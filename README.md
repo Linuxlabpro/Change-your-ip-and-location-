@@ -12,23 +12,70 @@ A powerful script that automatically changes your IP address and location every 
 
 ---
 
+## 🔴 TERMUX Installation & Run Commands
+
+### Step 1: Update Termux
+```bash
+apt update && apt upgrade -y
+```
+
+### Step 2: Install Mandatory Packages
+```bash
+apt install python3 python3-pip curl git tor -y
+```
+
+### Step 3: Install Python Dependencies
+```bash
+pip install requests stem pysocks beautifulsoup4
+```
+
+### Step 4: Clone Repository
+```bash
+git clone https://github.com/Linuxlabpro/Change-your-ip-and-location-.git
+cd Change-your-ip-and-location-
+```
+
+### Step 5: Start Tor Service
+```bash
+tor &
+```
+
+### Step 6: Run Script (Copy & Paste Direct)
+```bash
+python3 script.py
+```
+
+### Step 7: Check IP Changes (New Terminal)
+```bash
+curl https://api.ipify.org?format=json
+```
+
+---
+
+## 🚀 Quick Copy-Paste Commands for Termux
+
+**All commands together (paste once):**
+
+```bash
+apt update && apt upgrade -y && apt install python3 python3-pip curl git tor -y && pip install requests stem pysocks beautifulsoup4 && git clone https://github.com/Linuxlabpro/Change-your-ip-and-location-.git && cd Change-your-ip-and-location- && tor & && sleep 5 && python3 script.py
+```
+
+---
+
 ## Mandatory Requirements
 
 ### Packages Required:
 - **Python 3.7+** or higher
 - **pip** (Python package manager)
 - **requests** - for making HTTP requests
-- **tor** - for IP rotation (optional but recommended)
+- **tor** - for IP rotation (essential)
+- **stem** - Tor Python controller
+- **pysocks** - SOCKS proxy support
 - **curl** - for testing IP changes
-
-### System Requirements:
-- Linux-based operating system (Ubuntu, Debian, Kali Linux, etc.)
-- Sudo/Administrator access (for some operations)
-- Stable internet connection
 
 ---
 
-## Installation
+## Installation (Linux)
 
 ### Step 1: Clone the Repository
 ```bash
@@ -142,22 +189,29 @@ You should see different IPs every 3 seconds.
 
 ## Troubleshooting
 
-### Issue: Tor Connection Failed
-```bash
-sudo service tor start
-sudo service tor status
-```
-
-### Issue: Permission Denied
+### Termux: Permission Denied
 ```bash
 chmod +x script.py
-sudo python3 script.py
+python3 script.py
+```
+
+### Tor Connection Failed
+```bash
+pkill tor
+tor &
+sleep 5
+python3 script.py
 ```
 
 ### Issue: Packages Not Found
 ```bash
-pip3 install --upgrade pip
-pip3 install -r requirements.txt
+pip install --upgrade pip
+pip install requests stem pysocks beautifulsoup4
+```
+
+### Check Tor Status
+```bash
+ps aux | grep tor
 ```
 
 ---
